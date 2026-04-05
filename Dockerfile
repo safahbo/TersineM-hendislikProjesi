@@ -10,7 +10,6 @@ FROM node:20-alpine
 WORKDIR /usr/src/app
 
 # Sadece gerekli dosyaları builder'dan al
-COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/src ./src
 
 # Read-only dosya sistemi uyumluluğu ve yetki düşürme
