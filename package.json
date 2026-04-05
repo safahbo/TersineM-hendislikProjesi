@@ -1,0 +1,11 @@
+{
+  "name": "advanced-string-extractor",
+  "version": "1.0.0",
+  "description": "Regex tabanlı gelişmiş string çıkarıcı ve analiz aracı",
+  "main": "src/extractor.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 0"
+  },
+  "author": "Safa",
+  "license": "ISC"
+}
