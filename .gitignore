@@ -1,0 +1,14 @@
+# Dependency directories
+node_modules/
+
+# Temporary analysis files
+*.part
+*.tmp
+
+# Environment variables (Security)
+.env
+.env.local
+
+# Output reports
+report.json
+*.log
