@@ -23,9 +23,6 @@ echo "[*] Dosyalar $APP_DIR dizinine kopyalanıyor..."
 mkdir -p "$APP_DIR"
 cp -r src package.json "$APP_DIR/"
 
-cd "$APP_DIR"
-npm install --production --silent
-
 echo "[*] Symlink oluşturuluyor..."
 chmod +x "$APP_DIR/src/extractor.js"
 ln -sf "$APP_DIR/src/extractor.js" "$BIN_LINK"
