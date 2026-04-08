@@ -4,8 +4,10 @@
   "description": "Regex tabanlı gelişmiş string çıkarıcı ve analiz aracı",
   "main": "src/extractor.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 0"
+    "start": "node src/extractor.js",
+    "test": "node tests/security_audit.js",
+    "analyze": "node src/extractor.js payload.bin --json"
   },
   "author": "Safa Hacıbayramoğlu",
-  "license": "ISC"
+  "license": "MIT"
 }
