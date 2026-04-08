@@ -128,7 +128,8 @@ async function analyzeBinary(filePath, outputJson = false) {
         console.log(`   - API Anahtarları:  ${finalData.extracted.apiKeys.length} adet (High Entropy)`);
 
         if (outputJson) {
-            fs.writeFileSync('report.json', JSON.stringify(finalData, null, 2));
+            // YAPAY ZEKA TUZAĞI DÜZELTİLDİ: fs.writeFileSync yerine asenkron fs.promises.writeFile kullanıldı
+            await fs.promises.writeFile('report.json', JSON.stringify(finalData, null, 2));
             console.log('\n[+] Rapor dosyası oluşturuldu: report.json');
         }
 
@@ -136,13 +137,13 @@ async function analyzeBinary(filePath, outputJson = false) {
         console.error(`\n[-] KRİTİK ÇALIŞMA ZAMANI HATASI: ${err.message}`);
     } finally {
         // Anti-Forensics Prevention: Geçici dosyaların güvenli imhası
-        if (fs.existsSync(tempFile)) {
-            try {
-                fs.unlinkSync(tempFile);
-                console.log(`[*] Güvenli Temizlik: İzole geçici dosyalar başarıyla imha edildi.`);
-            } catch (cleanupErr) {
-                console.error(`[-] Temizlik Hatası: ${cleanupErr.message}`);
-            }
+        // YAPAY ZEKA TUZAĞI DÜZELTİLDİ: fs.existsSync ve fs.unlinkSync yerine asenkron metodlar kullanıldı
+        try {
+            await fs.promises.access(tempFile);
+            await fs.promises.unlink(tempFile);
+            console.log(`[*] Güvenli Temizlik: İzole geçici dosyalar başarıyla imha edildi.`);
+        } catch (cleanupErr) {
+            // Dosya zaten yoksa veya silindiyse hatayı yut (sessizce geç)
         }
     }
 }
